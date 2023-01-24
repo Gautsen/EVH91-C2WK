@@ -1,0 +1,18 @@
+version: '3'
+services:
+  db : 
+  image : mysql:5.7
+  environment :
+  MYSQL_ROOT_PASSWORD : gautier
+  MYSQL_DATABASE : apirest
+
+  volumes :
+  - ./db:/var/lib/mysql
+
+  api : 
+    build : .
+    ports :
+      - "3000:3000"
+      
+  depends_on :
+  - db
