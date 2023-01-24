@@ -1,0 +1,329 @@
+<div class="container" style="padding: 5%;">
+  <div class="row justify-content-md-center">
+
+    <div class="col-12">
+      <div class="form-outline mb-4">
+      </div>
+      <h5> Listes des utilisateurs</h5>
+      <h6> Actions administrateur</h6>
+      <button type="button" class="btn btn-primary" (click)="open(content)">Ajouter un utilisateur</button>
+      <button type ="button" class="btn btn-danger" (click)="open(contentDelete)">Supprimer un utilisateur</button>
+      <button type ="button" class="btn btn-warning" (click)="open(contentEdit)">Modifier un utilisateur</button>
+      <table class="table">
+      <!--Affichage des utilisateurs -->
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Identifiant</th>
+            <th scope="col">Email</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Code Postal</th>
+            <th scope="col">Ville</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of user">
+            <td><span>{{user.id}}</span></td>
+            <td><span>{{user.username}}</span></td>
+            <td><span>{{user.email}}</span></td>
+            <td><span>{{user.adresse}}</span></td>
+            <td><span>{{user.postalCode}}</span></td>
+            <td><span>{{user.city}}</span></td>
+            <td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Nouvel utilisateur</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit) = "onSubmit(f)" novalidate>
+      <div class="form-group">
+        <label for="username">Identifiant</label>
+        <div class="input-group">
+          <input id="username" name="username" class="form-control" ngModel >
+        </div>
+      </div>
+      <div class="form-group">
+        <label type="password" for="password">Mot de passe</label>
+        <div class="input-group">
+          <input id="password" name="password"class="form-control" ngModel>
+        </div>
+      </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <input id="email" name="email" class="form-control"ngModel >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="adresse">Adresse</label>
+          <div class="input-group">
+            <input id="adresse" name="adresse" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city">Ville</label>
+          <div class="input-group">
+            <input id="city" name ="city" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="postalCode">Code Postal</label>
+          <div class="input-group">
+            <input id="postalCode" name="postalCode" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="border text-center">
+          <button data-dismiss="modal" class="btn btn-info">OK</button>
+          </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Modal pour supprimer un utilisateur en fonction de son ID-->
+<ng-template #contentDelete>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Supprimer un utilisateur</h4>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit) = "onDelete(f)" novalidate>
+      <div class="form-group">
+        <label for="id">ID</label>
+        <div class="input-group">
+          <input id="id" name="id" class="form-control" ngModel >
+        </div>
+      </div>
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">OK</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Modal pour modifier un utilisateur-->
+<ng-template #contentEdit>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modifier un utilisateur</h4>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit) = "onEdit(f)" novalidate>
+      <div class="form-group">
+        <label for="id">ID</label>
+        <div class="input-group">
+          <input id="id" name="id" class="form-control" ngModel >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="username">Identifiant</label>
+        <div class="input-group">
+          <input id="username" name="username" class="form-control" ngModel >
+        </div>
+      </div>
+      <div class="form-group">
+        <label type="password" for="password">Mot de passe</label>
+        <div class="input-group">
+          <input id="password" name="password"class="form-control" ngModel>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <input id="email" name="email" class="form-control"ngModel >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <div class="input-group">
+          <input id="adresse" name="adresse" class="form-control" ngModel>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city">Ville</label>
+        <div class="input-group">
+          <input id="city" name ="city" class="form-control" ngModel>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="postalCode">Code Postal</label>
+        <div class="input-group">
+          <input id="postalCode" name="postalCode" class="form-control" ngModel>
+        </div>
+      </div>
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">OK</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Affichage des produits -->
+<div class="container" style="padding: 5%;">
+  <div class="row justify-content-md-center">
+
+    <div class="col-12">
+      <div class="form-outline mb-4">
+      </div>
+      <h5> Listes des produits</h5>
+      <h6> Actions administrateur</h6>
+      <button type="button" class="btn btn-primary"(click)="open(produitAdd)">Ajouter un produit</button>
+      <button type ="button" class="btn btn-danger"(click)="open(produitDelete)">Supprimer un produit</button>
+      <button type ="button" class="btn btn-warning"(click)="open(produitEdit)">Modifier un produit</button>
+      <table class="table">
+      <!--Affichage des produits -->
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Devise</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produits of produits">
+            <td><span>{{produits.id}}</span></td>
+            <td><span>{{produits.name}}</span></td>
+            <td><span>{{produits.description}}</span></td>
+            <td><span>{{produits.image}}</span></td>
+            <td><span>{{produits.price}}</span></td>
+            <td><span>{{produits.currency}}</span></td>
+            <td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal pour ajouter un produit-->
+<ng-template #produitAdd let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Nouveau produit</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit) = "onAddProduit(f)" novalidate>
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <div class="input-group">
+          <input id="name" name="name" class="form-control" ngModel >
+        </div>
+      </div>
+      <div class="form-group">
+        <label type="description" for="password">Description</label>
+        <div class="input-group">
+          <input id="description" name="description"class="form-control" ngModel>
+        </div>
+      </div>
+        <div class="form-group">
+          <label for="image">Image (/assets/X.jpg)</label>
+          <div class="input-group">
+            <input id="image" name="image" class="form-control"ngModel >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price">Prix</label>
+          <div class="input-group">
+            <input id="price" name="price" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="currency">Devise</label>
+          <div class="input-group">
+            <input id="currency" name ="currency" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="border text-center">
+          <button data-dismiss="modal" class="btn btn-info">OK</button>
+          </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #produitEdit let modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modifier un produit</h4>
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit) = "onEditProduit(f)" novalidate>
+      <div class="form-group">
+        <label for="id">ID</label>
+        <div class="input-group">
+          <input id="id" name="id" class="form-control" ngModel >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <div class="input-group">
+          <input id="name" name="name" class="form-control" ngModel >
+        </div>
+      </div>
+      <div class="form-group">
+        <label type="description" for="password">Description</label>
+        <div class="input-group">
+          <input id="description" name="description"class="form-control" ngModel>
+        </div>
+      </div>
+        <div class="form-group">
+          <label for="image">Image (/assets/X.jpg)</label>
+          <div class="input-group">
+            <input id="image" name="image" class="form-control"ngModel >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price">Prix</label>
+          <div class="input-group">
+            <input id="price" name="price" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="currency">Devise</label>
+          <div class="input-group">
+            <input id="currency" name ="currency" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="border text-center">
+          <button data-dismiss="modal" class="btn btn-info">OK</button>
+          </div>
+    </form>
+  </div>
+
+</ng-template>
+<!-- Modal pour supprimer un utilisateur en fonction de son ID-->
+<ng-template #produitDelete>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Supprimer un utilisateur</h4>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit) = "onDeleteProduit(f)" novalidate>
+      <div class="form-group">
+        <label for="id">ID</label>
+        <div class="input-group">
+          <input id="id" name="id" class="form-control" ngModel >
+        </div>
+      </div>
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-info">OK</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

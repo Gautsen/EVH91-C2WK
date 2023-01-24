@@ -1,0 +1,35 @@
+<div class="container" style="padding: 5%;">
+    
+    <div class="row justify-content-md-center">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+        <div class="col-4">
+            <!--Username input-->
+            <div class="form-outline mb-4">
+                <input [(ngModel)]="username" type="text" id="form1Example1" class="form-control" />
+                <label class="form-label" for="form1Example1">Identifiant</label>
+            </div>
+
+            <!--Password input-->
+            <div class="form-outline mb-4">
+                <input [(ngModel)]="password" type="password" id="form1Example2" class="form-control" />
+                <label class="form-label" for="form1Example2">Mot de passe</label>
+            </div>
+
+            <!-- Submit button -->
+            <div class="text-center">
+                <button class="btn btn-primary" (click)="login()">Connexion</button>
+            </div>
+                
+
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>Pas encore inscrit ? <a href="/register">Inscription</a></p>
+            </div>
+        </div>
+
+        
+
+
+          

@@ -1,0 +1,180 @@
+<div class="container" style="padding: 5%;">
+  <div class="row justify-content-md-center">
+
+    <div class="col-12">
+      <div class="form-outline mb-4">
+      </div>
+      <!--Affichage de l'utilisateur -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Identifiant</th>
+            <th scope="col">Email</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Code Postal</th>
+            <th scope="col">Ville</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.adresse}}</td>
+            <td>{{user.postalCode}}</td>
+            <td>{{user.city}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Bouton modifier -->
+      <div class="btn">
+        <button class="btn btn-success" (click)="open(EditUser)">Modifier</button>
+      </div>
+
+      <!-- Bouton ajouter produit-->
+      <div class="btn">
+        <button class="btn btn-info" (click)="open(AddProduct)">Ajouter un produit</button>
+      </div>
+    </div>
+
+
+  </div>
+
+  <ng-template #EditUser let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Informations de l'utilisateur</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input type="text" class="form-control" id="id" name="id" [(ngModel)]="user.id" readonly required>
+        </div>
+        <div class="form-group">
+          <label for="username">Identifiant</label>
+          <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" required>
+        </div>
+        <div>
+          <label for="adresse">Adresse</label>
+          <input type="text" class="form-control" id="adresse" name="adresse" [(ngModel)]="user.adresse" required>
+        </div>
+        <div>
+          <label for="postalCode">Code Postal</label>
+          <input type="text" class="form-control" id="postalCode" name="postalCode" [(ngModel)]="user.postalCode"
+            required>
+        </div>
+        <div>
+          <label for="city">Ville</label>
+          <input type="text" class="form-control" id="city" name="city" [(ngModel)]="user.city" required>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit(f)">Mettre à jour</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Fermer</button>
+    </div>
+  </ng-template>
+
+
+
+  <!------------------------------------------------------------>
+  <!--Modal pour ajouter un produit-->
+  <ng-template #AddProduct let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ajouter un produit</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #f="ngForm" (ngSubmit)="onAddProduct(f)" novalidate>
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <div class="input-group">
+            <input id="name" name="name" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username">Description</label>
+          <div class="input-group">
+            <input id="description" name="description" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username">Prix</label>
+          <div class="input-group">
+            <input id="price" name="price" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username">Devise</label>
+          <div class="input-group">
+            <input id="currency" name="currency" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="disabled">
+          <label for="username">Vendeur</label>
+          <div class="input-group">
+            <input id="vendeur" name="vendeur" class="form-control" ngModel>
+          </div>
+        </div>
+
+        <!-- Upload d'image -->
+        
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="onAddProduct(f)">Ajouter</button>
+    </div>
+  </ng-template>
+
+</div>
+
+<!-- Affichage des produits du vendeur par ID -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Produits</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Devise</th>
+            <th scope="col">Vendeur</th>
+            <th scope="col">Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produits of produits">
+            <td>{{produits.id}}</td>
+            <td>{{produits.name}}</td>
+            <td>{{produits.description}}</td>
+            <td>{{produits.price}}</td>
+            <td>{{produits.currency}}</td>
+            <td>{{produits.vendeur}}</td>
+            <td>{{produits.image}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,19 @@
+<br>
+<div class="container text-center" >
+    <h1>Liste des produits</h1>
+</div>
+<div class="row row-cols-4 row-cols-md-4 g-4">
+    <div *ngFor="let products of products">
+        <img src={{products.image}} class="card-img-top" width="200" height="250" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{products.name}}</h5>
+            <p class="card-text">{{products.description}}</p>
+        </div>
+
+
+        <div class="card-footer">
+            {{products.price}} {{products.currency}}
+            <button type="button" class="btn btn-primary">Ajouter au panier</button>
+        </div>
+    </div>
+</div>

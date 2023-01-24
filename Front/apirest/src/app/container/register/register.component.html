@@ -1,0 +1,49 @@
+<div class="container" style="padding: 5%;">
+    <div class="row justify-content-md-center">
+
+        <div class="col-4">
+            <!--Username input-->
+            <div class="form-outline mb-4">
+                <input [(ngModel)]="username" type="text" id="form1Example1" class="form-control" />
+                <label class="form-label" for="form1Example1">Identifiant</label>
+            </div>
+
+            <!--Password input-->
+            <div class="form-outline mb-4">
+                <input [(ngModel)]="password" type="password" id="form1Example2" class="form-control" />
+                <label class="form-label" for="form1Example2">Mot de passe</label>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input [(ngModel)]="email" type="email" id="form1Example3" class="form-control" />
+                <label class="form-label" for="form1Example3">Email</label>
+            </div>
+
+            <!-- Adresse input -->
+            <div class="form-outline mb-4">
+                <input [(ngModel)]="adresse" type="text" id="form1Example4" class="form-control" />
+                <label class="form-label" for="form1Example4">Adresse</label>
+            </div>
+            <!-- Ville input -->
+            <div class="form-outline mb-4">
+                <input [(ngModel)]="city" type="text" id="form1Example5" class="form-control" />
+                <label class="form-label" for="form1Example5">Ville</label>
+            </div>
+            <!-- Code postal input -->
+            <div class="form-outline mb-4">
+                <input [(ngModel)]="postalCode" type="text" id="form1Example5" class="form-control" />
+                <label class="form-label" for="form1Example6">Code postal</label>
+            </div>
+
+            <!-- Submit button -->
+            <div class="text-center">
+                <button class="btn btn-primary btn-block mb-4"(click)="register()">Connexion</button>
+            </div>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>Déjà inscrit ? <a href="/login">Connecte toi</a></p>
+            </div>
+        </div>
+    </div>
